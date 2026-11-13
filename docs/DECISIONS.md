@@ -50,7 +50,9 @@ short: the decision, then the reason.
   `@vite-pwa/assets-generator`. That generator derives every size from a single image, but a
   good launcher icon needs two sources: a rounded tile and a full-bleed maskable version.
 - **GitHub Actions use the newest majors** (checkout 7, setup-node 7, upload-pages-artifact 5,
-  deploy-pages 5). The workflow has not run yet: it needs the repository on GitHub.
+  deploy-pages 5). The workflow first ran on 2026-11-13, when the code moved into its own
+  repository: everything up to the upload of the site passes on GitHub's runners. The deploy job
+  needs Pages to be switched on once in the repository settings, which only the owner can do.
 
 ### Look and feel
 
@@ -257,6 +259,13 @@ short: the decision, then the reason.
 - JavaScript, gzipped: app 31 kB, React 68, Motion 47, vendor 99 (Dexie, React Router, zod,
   ts-fsrs, lucide, Zustand), and KaTeX 78, which loads with the first formula card. The precache
   has 42 entries and 1.6 MB, of which the fonts are 0.4 MB.
+
+### Repository
+
+- **Phases 0 and 1 were written in a `kvant/` folder on a branch of another repository**, because
+  the first sessions could not reach `kiss-m/kvant`. The folder was moved here with
+  `git subtree split`, so this history starts with the Phase 0 commit, has the app at the root,
+  and its commit ids differ from the ones on that branch. The copy there is not maintained.
 
 ### Verification
 

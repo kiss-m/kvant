@@ -196,9 +196,11 @@ src/
 
 ## Deployment
 
-GitHub Pages under the sub-path `/kvant/`, deployed by `.github/workflows/ci-deploy.yml` on every
-push to `main` (Pages source: GitHub Actions). The base path is set once, as `BASE` in
-`vite.config.ts`. The service worker uses the prompt strategy: a new version waits until the user
+The repository is `kiss-m/kvant` on GitHub, with the app at its root, and the site is
+https://kiss-m.github.io/kvant/. It is GitHub Pages under the sub-path `/kvant/`, deployed by
+`.github/workflows/ci-deploy.yml` on every push to `main`. The deploy job only works once Pages
+is switched on in the repository (Settings → Pages → Source: GitHub Actions). The base path is
+set once, as `BASE` in `vite.config.ts`. The service worker uses the prompt strategy: a new version waits until the user
 taps "Obnoviť" in the toast, so a learning session is never reloaded mid-card. The content packs
 are precached with the app shell, so a pack always matches the app version that reads it.
 
@@ -206,9 +208,10 @@ are precached with the app shell, so a pack always matches the app version that 
 
 - [x] **Phase 0 · Foundation.** Project skeleton, tooling, the four tabs, dark and light theme,
       Dexie schema v1, zod content schemas, PWA shell with offline support and the update
-      prompt, app icon, CI workflow. **Still open:** the first deployment. The code has to be
-      pushed to the `kvant` GitHub repository and Pages enabled, so the workflow has never run
-      and the on-device check (install, airplane mode) is open.
+      prompt, app icon, CI workflow. CI is green on GitHub since 2026-11-13 (install, typecheck,
+      lint, tests, build). **Still open:** the deploy job failed on that first run because Pages
+      was not switched on yet, so check the latest run before assuming the site is live. The
+      on-device check (install, airplane mode) follows from that.
 - [x] **Phase 1 · Usable feed.** Content importer and `content:build`; a seed of 60 cards in
       three categories; cards for concept, formula, example, did_you_know, myth and quiz, and the
       flashcard review; the actions under a card; mixer v1 with all constraints; checkpoint,

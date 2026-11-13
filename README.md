@@ -6,7 +6,7 @@ cards already seen are mixed in so the ideas stick, and an RPG character grows w
 learned. The app is in Slovak.
 
 Kvant is an installable PWA that works offline, with no backend, no accounts and no analytics. It
-is deployed to GitHub Pages under `/kvant/`.
+is deployed to GitHub Pages at https://kiss-m.github.io/kvant/.
 
 ## Where it stands
 
