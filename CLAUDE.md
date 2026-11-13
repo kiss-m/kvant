@@ -198,20 +198,26 @@ src/
 
 The repository is `kiss-m/kvant` on GitHub, with the app at its root, and the site is
 https://kiss-m.github.io/kvant/. It is GitHub Pages under the sub-path `/kvant/`, deployed by
-`.github/workflows/ci-deploy.yml` on every push to `main`. The deploy job only works once Pages
-is switched on in the repository (Settings → Pages → Source: GitHub Actions). The base path is
-set once, as `BASE` in `vite.config.ts`. The service worker uses the prompt strategy: a new version waits until the user
-taps "Obnoviť" in the toast, so a learning session is never reloaded mid-card. The content packs
-are precached with the app shell, so a pack always matches the app version that reads it.
+`.github/workflows/ci-deploy.yml` on every push to `main`. Pages is switched on in the repository
+with the source "GitHub Actions"; without that the deploy job fails. A commit that should not be
+deployed, such as a change to the docs alone, can carry `[skip ci]` in its message.
+
+The base path is set once, as `BASE` in `vite.config.ts`. The service worker uses the prompt
+strategy: a new version waits until the user taps "Obnoviť" in the toast, so a learning session
+is never reloaded mid-card. The content packs are precached with the app shell, so a pack always
+matches the app version that reads it.
+
+The site cannot be opened from the cloud environment these sessions run in (its network rules
+do not allow `kiss-m.github.io`). The result of the deploy job is what a session can check. What
+the phone shows is for the user to report.
 
 ## Phase status
 
 - [x] **Phase 0 · Foundation.** Project skeleton, tooling, the four tabs, dark and light theme,
       Dexie schema v1, zod content schemas, PWA shell with offline support and the update
-      prompt, app icon, CI workflow. CI is green on GitHub since 2026-11-13 (install, typecheck,
-      lint, tests, build). **Still open:** the deploy job failed on that first run because Pages
-      was not switched on yet, so check the latest run before assuming the site is live. The
-      on-device check (install, airplane mode) follows from that.
+      prompt, app icon, CI workflow. CI and the deployment to GitHub Pages work since
+      2026-11-13. **Still open:** the on-device check (opens on the phone, installs to the home
+      screen, opens in airplane mode), which is the user's to do.
 - [x] **Phase 1 · Usable feed.** Content importer and `content:build`; a seed of 60 cards in
       three categories; cards for concept, formula, example, did_you_know, myth and quiz, and the
       flashcard review; the actions under a card; mixer v1 with all constraints; checkpoint,
@@ -219,7 +225,7 @@ are precached with the app shell, so a pack always matches the app version that 
       the feed and a review session; Settings. Verified locally: 489 tests, and the built app in
       headless Chromium (two consecutive days, offline, real touch swipes, 320 to 412 px, both
       themes, 130 % and 200 % text, cold start under 1 s with 2 000 cards at a 4x CPU slowdown).
-      **Still open:** a week of real use on the phone, which needs the deployment above.
+      **Still open:** a week of real use on the phone.
 - [ ] Phase 2 · Content factory
 - [ ] Phase 3 · RPG and stats
 - [ ] Phase 4 · Paths and bosses

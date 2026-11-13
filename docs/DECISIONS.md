@@ -51,8 +51,8 @@ short: the decision, then the reason.
   good launcher icon needs two sources: a rounded tile and a full-bleed maskable version.
 - **GitHub Actions use the newest majors** (checkout 7, setup-node 7, upload-pages-artifact 5,
   deploy-pages 5). The workflow first ran on 2026-11-13, when the code moved into its own
-  repository: everything up to the upload of the site passes on GitHub's runners. The deploy job
-  needs Pages to be switched on once in the repository settings, which only the owner can do.
+  repository. Its deploy job failed until Pages was switched on in the repository settings,
+  which only the owner can do. The second run, the same day, deployed the site.
 
 ### Look and feel
 
